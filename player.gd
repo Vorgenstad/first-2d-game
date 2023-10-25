@@ -1,5 +1,7 @@
 extends Area2D
 
+signal hit
+
 @export var speed = 400
 var screen_size
 
@@ -45,3 +47,9 @@ func calculate_velocity():
 		velocity = velocity.normalized() * speed
 		
 	return velocity
+
+func _on_body_entered(body):
+	hide()
+	hit.emit()
+	
+	$CollisionShape2D.set_deferred("disabled", true)
