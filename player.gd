@@ -48,6 +48,11 @@ func calculate_velocity():
 		
 	return velocity
 
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+
 func _on_body_entered(body):
 	hide()
 	hit.emit()
