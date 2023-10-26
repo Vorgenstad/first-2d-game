@@ -15,7 +15,13 @@ point_count = 5
 script = ExtResource("1_crr06")
 mob_scene = ExtResource("2_s8bct")
 
-[node name="HUD" parent="." instance=ExtResource("3_drn8o")]
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0235294, 0.317647, 0.4, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_3ivdn")]
 
@@ -36,8 +42,10 @@ curve = SubResource("Curve2D_e6l03")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
-[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[node name="HUD" parent="." instance=ExtResource("3_drn8o")]
+
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
