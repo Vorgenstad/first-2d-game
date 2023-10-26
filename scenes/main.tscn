@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://ctoyadwwxyvyi"]
 
-[ext_resource type="PackedScene" uid="uid://ck352kc37fuv1" path="res://player.tscn" id="1_3ivdn"]
-[ext_resource type="Script" path="res://main.gd" id="1_crr06"]
-[ext_resource type="PackedScene" uid="uid://b7d76psbir5v7" path="res://mob.tscn" id="2_s8bct"]
-[ext_resource type="PackedScene" uid="uid://qgj6ekr16tr6" path="res://hud.tscn" id="3_drn8o"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_csgql"]
+[ext_resource type="PackedScene" uid="uid://b7d76psbir5v7" path="res://scenes/mob.tscn" id="2_4oi8a"]
+[ext_resource type="PackedScene" uid="uid://ck352kc37fuv1" path="res://scenes/player.tscn" id="3_06wf7"]
+[ext_resource type="PackedScene" uid="uid://qgj6ekr16tr6" path="res://scenes/hud.tscn" id="4_1c1ix"]
 
 [sub_resource type="Curve2D" id="Curve2D_e6l03"]
 _data = {
@@ -12,8 +12,8 @@ _data = {
 point_count = 5
 
 [node name="Main" type="Node"]
-script = ExtResource("1_crr06")
-mob_scene = ExtResource("2_s8bct")
+script = ExtResource("1_csgql")
+mob_scene = ExtResource("2_4oi8a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0235294, 0.317647, 0.4, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_3ivdn")]
+[node name="Player" parent="." instance=ExtResource("3_06wf7")]
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
@@ -42,7 +42,7 @@ curve = SubResource("Curve2D_e6l03")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
-[node name="HUD" parent="." instance=ExtResource("3_drn8o")]
+[node name="HUD" parent="." instance=ExtResource("4_1c1ix")]
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
